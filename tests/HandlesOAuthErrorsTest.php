@@ -80,7 +80,7 @@ class HandlesOAuthErrorsTest extends TestCase
 
 class HandlesOAuthErrorsStubController
 {
-    use \Laravel\Passport\Http\Controllers\HandlesOAuthErrors;
+    use \RaazPuspa\Passport\Http\Controllers\HandlesOAuthErrors;
 
     public function test($callback)
     {

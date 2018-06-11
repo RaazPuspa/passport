@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use PHPUnit\Framework\TestCase;
-use Laravel\Passport\Http\Middleware\CheckClientCredentials;
+use RaazPuspa\Passport\Http\Middleware\CheckClientCredentials;
 
 class CheckClientCredentialsTest extends TestCase
 {
@@ -74,7 +74,7 @@ class CheckClientCredentialsTest extends TestCase
     }
 
     /**
-     * @expectedException \Laravel\Passport\Exceptions\MissingScopeException
+     * @expectedException \RaazPuspa\Passport\Exceptions\MissingScopeException
      */
     public function test_exception_is_thrown_if_token_does_not_have_required_scopes()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Passport;
+namespace RaazPuspa\Passport;
 
 use DateInterval;
 use Illuminate\Auth\RequestGuard;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Passport\Guards\TokenGuard;
+use RaazPuspa\Passport\Guards\TokenGuard;
 use League\OAuth2\Server\CryptKey;
 use League\OAuth2\Server\ResourceServer;
 use Illuminate\Config\Repository as Config;
@@ -18,9 +18,9 @@ use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
 use League\OAuth2\Server\Grant\ImplicitGrant;
 use League\OAuth2\Server\Grant\PasswordGrant;
-use Laravel\Passport\Bridge\PersonalAccessGrant;
+use RaazPuspa\Passport\Bridge\PersonalAccessGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
-use Laravel\Passport\Bridge\RefreshTokenRepository;
+use RaazPuspa\Passport\Bridge\RefreshTokenRepository;
 use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 
 class PassportServiceProvider extends ServiceProvider
@@ -46,6 +46,10 @@ class PassportServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../resources/assets/js/components' => base_path('resources/assets/js/components/passport'),
             ], 'passport-components');
+
+            $this->publishes([
+                __DIR__.'/../RaazPuspa/Passport' => base_path('app/RaazPuspa/Passport'),
+            ], 'multiple-passport-connection');
 
             $this->commands([
                 Console\InstallCommand::class,

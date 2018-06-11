@@ -1,10 +1,8 @@
 <?php
 
-namespace Laravel\Passport;
+namespace RaazPuspa\Passport;
 
-use Illuminate\Database\Eloquent\Model;
-
-class AuthCode extends Model
+class AuthCode extends BaseModel
 {
     /**
      * The database table used by the model.

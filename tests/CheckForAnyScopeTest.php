@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Laravel\Passport\Http\Middleware\CheckForAnyScope as CheckScopes;
+use RaazPuspa\Passport\Http\Middleware\CheckForAnyScope as CheckScopes;
 
 class CheckForAnyScopesTest extends TestCase
 {
@@ -27,7 +27,7 @@ class CheckForAnyScopesTest extends TestCase
     }
 
     /**
-     * @expectedException Laravel\Passport\Exceptions\MissingScopeException
+     * @expectedException RaazPuspa\Passport\Exceptions\MissingScopeException
      */
     public function test_exception_is_thrown_if_token_doesnt_have_scope()
     {

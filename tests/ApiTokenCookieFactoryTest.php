@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use Illuminate\Encryption\Encrypter;
-use Laravel\Passport\ApiTokenCookieFactory;
+use RaazPuspa\Passport\ApiTokenCookieFactory;
 
 class ApiTokenCookieFactoryTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Passport\Http\Controllers;
+namespace RaazPuspa\Passport\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Zend\Diactoros\Response as Psr7Response;

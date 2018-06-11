@@ -1,10 +1,9 @@
 <?php
 
-namespace Laravel\Passport\Console;
+namespace RaazPuspa\Passport\Console;
 
 use Illuminate\Console\Command;
-use Laravel\Passport\ClientRepository;
-use Laravel\Passport\PersonalAccessClient;
+use RaazPuspa\Passport\ClientRepository;
 
 class ClientCommand extends Command
 {
@@ -14,6 +13,8 @@ class ClientCommand extends Command
      * @var string
      */
     protected $signature = 'passport:client
+            {--database= : Specify the database name for which you are trying to install}
+            {--connection= : Specify the connection name to connect with your database}
             {--personal : Create a personal access token client}
             {--password : Create a password grant client}
             {--name= : The name of the client}';
@@ -28,11 +29,18 @@ class ClientCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param  \Laravel\Passport\ClientRepository  $clients
+     * @param  \RaazPuspa\Passport\ClientRepository $clients
      * @return void
      */
     public function handle(ClientRepository $clients)
     {
+        $connection = $this->option('connection') ?: env('DB_CONNECTION');
+        $clients->updateConnection($connection);
+
+        if ($this->option('database')) {
+            config()->set("database.connections.{$connection}.database", $this->option('database'));
+        }
+
         if ($this->option('personal')) {
             return $this->createPersonalClient($clients);
         }
@@ -47,14 +55,14 @@ class ClientCommand extends Command
     /**
      * Create a new personal access client.
      *
-     * @param  \Laravel\Passport\ClientRepository  $clients
+     * @param  \RaazPuspa\Passport\ClientRepository $clients
      * @return void
      */
     protected function createPersonalClient(ClientRepository $clients)
     {
         $name = $this->option('name') ?: $this->ask(
             'What should we name the personal access client?',
-            config('app.name').' Personal Access Client'
+            config('app.name') . ' Personal Access Client'
         );
 
         $client = $clients->createPersonalAccessClient(
@@ -62,21 +70,21 @@ class ClientCommand extends Command
         );
 
         $this->info('Personal access client created successfully.');
-        $this->line('<comment>Client ID:</comment> '.$client->id);
-        $this->line('<comment>Client Secret:</comment> '.$client->secret);
+        $this->line('<comment>Client ID:</comment> ' . $client->id);
+        $this->line('<comment>Client Secret:</comment> ' . $client->secret);
     }
 
     /**
      * Create a new password grant client.
      *
-     * @param  \Laravel\Passport\ClientRepository  $clients
+     * @param  \RaazPuspa\Passport\ClientRepository $clients
      * @return void
      */
     protected function createPasswordClient(ClientRepository $clients)
     {
         $name = $this->option('name') ?: $this->ask(
             'What should we name the password grant client?',
-            config('app.name').' Password Grant Client'
+            config('app.name') . ' Password Grant Client'
         );
 
         $client = $clients->createPasswordGrantClient(
@@ -84,14 +92,14 @@ class ClientCommand extends Command
         );
 
         $this->info('Password grant client created successfully.');
-        $this->line('<comment>Client ID:</comment> '.$client->id);
-        $this->line('<comment>Client Secret:</comment> '.$client->secret);
+        $this->line('<comment>Client ID:</comment> ' . $client->id);
+        $this->line('<comment>Client Secret:</comment> ' . $client->secret);
     }
 
     /**
      * Create a authorization code client.
      *
-     * @param  \Laravel\Passport\ClientRepository  $clients
+     * @param  \RaazPuspa\Passport\ClientRepository $clients
      * @return void
      */
     protected function createAuthCodeClient(ClientRepository $clients)
@@ -114,7 +122,7 @@ class ClientCommand extends Command
         );
 
         $this->info('New client created successfully.');
-        $this->line('<comment>Client ID:</comment> '.$client->id);
-        $this->line('<comment>Client secret:</comment> '.$client->secret);
+        $this->line('<comment>Client ID:</comment> ' . $client->id);
+        $this->line('<comment>Client secret:</comment> ' . $client->secret);
     }
 }

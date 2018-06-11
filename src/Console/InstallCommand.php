@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Passport\Console;
+namespace RaazPuspa\Passport\Console;
 
 use Illuminate\Console\Command;
 
@@ -11,7 +11,11 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'passport:install {--force : Overwrite keys if they already exist}';
+    protected $signature = 'passport:install
+                            {--database= : Specify the database name for which you are trying to install}
+                            {--connection= : Specify the connection name to connect with your database}
+                            {--force : Overwrite keys if they already exist}
+                            {--name= : The name of the client}';
 
     /**
      * The console command description.
@@ -27,9 +31,20 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->call('passport:keys', ['--force' => $this->option('force')]);
+        $this->call('passport:keys', [ '--force' => $this->option('force') ]);
 
-        $this->call('passport:client', ['--personal' => true, '--name' => config('app.name').' Personal Access Client']);
-        $this->call('passport:client', ['--password' => true, '--name' => config('app.name').' Password Grant Client']);
+        $this->call('passport:client', [
+            '--personal'   => true,
+            '--database'   => $this->option('database'),
+            '--connection' => $this->option('connection'),
+            '--name'       => $this->option('name') ?: null,
+        ]);
+
+        $this->call('passport:client', [
+            '--password'   => true,
+            '--database'   => $this->option('database'),
+            '--connection' => $this->option('connection'),
+            '--name'       => $this->option('name') ?: null,
+        ]);
     }
 }

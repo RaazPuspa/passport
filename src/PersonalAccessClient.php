@@ -1,10 +1,8 @@
 <?php
 
-namespace Laravel\Passport;
+namespace RaazPuspa\Passport;
 
-use Illuminate\Database\Eloquent\Model;
-
-class PersonalAccessClient extends Model
+class PersonalAccessClient extends BaseModel
 {
     /**
      * The database table used by the model.

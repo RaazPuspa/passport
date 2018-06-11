@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Passport;
+namespace RaazPuspa\Passport;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ class TokenRepository
      * Creates a new Access Token.
      *
      * @param  array  $attributes
-     * @return \Laravel\Passport\Token
+     * @return \RaazPuspa\Passport\Token
      */
     public function create($attributes)
     {
@@ -22,7 +22,7 @@ class TokenRepository
      * Get a token by the given ID.
      *
      * @param  string  $id
-     * @return \Laravel\Passport\Token
+     * @return \RaazPuspa\Passport\Token
      */
     public function find($id)
     {
@@ -34,7 +34,7 @@ class TokenRepository
      *
      * @param  string  $id
      * @param  int  $userId
-     * @return \Laravel\Passport\Token|null
+     * @return \RaazPuspa\Passport\Token|null
      */
     public function findForUser($id, $userId)
     {
@@ -56,8 +56,8 @@ class TokenRepository
      * Get a valid token instance for the given user and client.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $user
-     * @param  \Laravel\Passport\Client  $client
-     * @return \Laravel\Passport\Token|null
+     * @param  \RaazPuspa\Passport\Client  $client
+     * @return \RaazPuspa\Passport\Token|null
      */
     public function getValidToken($user, $client)
     {
@@ -71,7 +71,7 @@ class TokenRepository
     /**
      * Store the given token instance.
      *
-     * @param  \Laravel\Passport\Token  $token
+     * @param  \RaazPuspa\Passport\Token  $token
      * @return void
      */
     public function save(Token $token)
@@ -110,8 +110,8 @@ class TokenRepository
      * Find a valid token for the given user and client.
      *
      * @param  \Illuminate\Database\Eloquent\Model  $user
-     * @param  \Laravel\Passport\Client  $client
-     * @return \Laravel\Passport\Token|null
+     * @param  \RaazPuspa\Passport\Client  $client
+     * @return \RaazPuspa\Passport\Token|null
      */
     public function findValidToken($user, $client)
     {

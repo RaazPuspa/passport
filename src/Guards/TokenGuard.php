@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\Passport\Guards;
+namespace RaazPuspa\Passport\Guards;
 
 use Exception;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
-use Laravel\Passport\Passport;
+use RaazPuspa\Passport\Passport;
 use Illuminate\Container\Container;
-use Laravel\Passport\TransientToken;
-use Laravel\Passport\TokenRepository;
-use Laravel\Passport\ClientRepository;
+use RaazPuspa\Passport\TransientToken;
+use RaazPuspa\Passport\TokenRepository;
+use RaazPuspa\Passport\ClientRepository;
 use League\OAuth2\Server\ResourceServer;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Encryption\Encrypter;
@@ -36,14 +36,14 @@ class TokenGuard
     /**
      * The token repository instance.
      *
-     * @var \Laravel\Passport\TokenRepository
+     * @var \RaazPuspa\Passport\TokenRepository
      */
     protected $tokens;
 
     /**
      * The client repository instance.
      *
-     * @var \Laravel\Passport\ClientRepository
+     * @var \RaazPuspa\Passport\ClientRepository
      */
     protected $clients;
 
@@ -59,8 +59,8 @@ class TokenGuard
      *
      * @param  \League\OAuth2\Server\ResourceServer  $server
      * @param  \Illuminate\Contracts\Auth\UserProvider  $provider
-     * @param  \Laravel\Passport\TokenRepository  $tokens
-     * @param  \Laravel\Passport\ClientRepository  $clients
+     * @param  \RaazPuspa\Passport\TokenRepository  $tokens
+     * @param  \RaazPuspa\Passport\ClientRepository  $clients
      * @param  \Illuminate\Contracts\Encryption\Encrypter  $encrypter
      * @return void
      */

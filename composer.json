@@ -1,16 +1,20 @@
 {
-    "name": "laravel/passport",
-    "description": "Laravel Passport provides OAuth2 server support to Laravel.",
-    "keywords": ["laravel", "passport", "oauth"],
+    "name": "raazpuspa/passport",
+    "description": "Laravel Passport provides OAuth2 server support to Laravel with multiple database connections.",
+    "keywords": ["laravel", "passport", "oauth", "connections"],
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel/passport/issues",
-        "source": "https://github.com/laravel/passport"
+        "issues": "https://github.com/raazpuspa/passport/issues",
+        "source": "https://github.com/raazpuspa/passport"
     },
     "authors": [
         {
             "name": "Taylor Otwell",
             "email": "taylor@laravel.com"
+        },
+        {
+            "name": "Pusparaj Bhattarai",
+            "email": "mail@pusparaaz.com.np"
         }
     ],
     "require": {
@@ -36,7 +40,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravel\\Passport\\": "src/"
+            "RaazPuspa\\Passport\\": "src/"
         }
     },
     "extra": {
@@ -45,7 +49,7 @@
         },
         "laravel": {
             "providers": [
-                "Laravel\\Passport\\PassportServiceProvider"
+                "RaazPuspa\\Passport\\PassportServiceProvider"
             ]
         }
     },

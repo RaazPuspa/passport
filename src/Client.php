@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravel\Passport;
+namespace RaazPuspa\Passport;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Client extends BaseModel
 {
     /**
      * The database table used by the model.
@@ -35,10 +35,9 @@ class Client extends Model
      * @var array
      */
     protected $casts = [
-        'grant_types' => 'array',
         'personal_access_client' => 'bool',
-        'password_client' => 'bool',
-        'revoked' => 'bool',
+        'password_client'        => 'bool',
+        'revoked'                => 'bool',
     ];
 
     /**

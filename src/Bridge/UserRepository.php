@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Passport\Bridge;
+namespace RaazPuspa\Passport\Bridge;
 
 use RuntimeException;
 use Illuminate\Hashing\HashManager;

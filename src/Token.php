@@ -1,42 +1,42 @@
 <?php
 
-namespace Laravel\Passport;
+namespace RaazPuspa\Passport;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Token extends Model
+class Token extends BaseModel
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'oauth_access_tokens';
-
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
     public $incrementing = false;
-
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'oauth_access_tokens';
     /**
      * The guarded attributes on the model.
      *
      * @var array
      */
     protected $guarded = [];
-
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
-        'scopes' => 'array',
+        'scopes'  => 'array',
         'revoked' => 'bool',
     ];
-
     /**
      * The attributes that should be mutated to dates.
      *
@@ -45,13 +45,6 @@ class Token extends Model
     protected $dates = [
         'expires_at',
     ];
-
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
 
     /**
      * Get the client that the token belongs to.
@@ -72,30 +65,30 @@ class Token extends Model
     {
         $provider = config('auth.guards.api.provider');
 
-        return $this->belongsTo(config('auth.providers.'.$provider.'.model'));
-    }
-
-    /**
-     * Determine if the token has a given scope.
-     *
-     * @param  string  $scope
-     * @return bool
-     */
-    public function can($scope)
-    {
-        return in_array('*', $this->scopes) ||
-               array_key_exists($scope, array_flip($this->scopes));
+        return $this->belongsTo(config('auth.providers.' . $provider . '.model'));
     }
 
     /**
      * Determine if the token is missing a given scope.
      *
-     * @param  string  $scope
+     * @param  string $scope
      * @return bool
      */
     public function cant($scope)
     {
-        return ! $this->can($scope);
+        return !$this->can($scope);
+    }
+
+    /**
+     * Determine if the token has a given scope.
+     *
+     * @param  string $scope
+     * @return bool
+     */
+    public function can($scope)
+    {
+        return in_array('*', $this->scopes) ||
+            array_key_exists($scope, array_flip($this->scopes));
     }
 
     /**
@@ -105,7 +98,7 @@ class Token extends Model
      */
     public function revoke()
     {
-        return $this->forceFill(['revoked' => true])->save();
+        return $this->forceFill([ 'revoked' => true ])->save();
     }
 
     /**
