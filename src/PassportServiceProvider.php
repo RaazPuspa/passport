@@ -50,13 +50,13 @@ class PassportServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../RaazPuspa/Passport' => base_path('app/RaazPuspa/Passport'),
             ], 'multiple-passport-connection');
-
-            $this->commands([
-                Console\InstallCommand::class,
-                Console\ClientCommand::class,
-                Console\KeysCommand::class,
-            ]);
         }
+
+        $this->commands([
+            Console\InstallCommand::class,
+            Console\ClientCommand::class,
+            Console\KeysCommand::class,
+        ]);
     }
 
     /**
